@@ -13,10 +13,10 @@ An addon which allows you to access any Piped instance, login and manage your pl
 - [x] Multi-language audio
 - [x] Subtitles
 - [x] Pick favourite your Piped instance
-- [x] Compatible with Sponsor Block (as soon as the Sponsor Block team adds the changes)
+- [x] Compatible with Sponsor Block
 - [ ] Watch live streams (can be watched once finished, for now)
 
-**User Features (logged in to a Piped instance)**
+**Account Features (logged in to a Piped instance)**
 
 - [x] Personal Feed
 - [x] Subscriptions
