@@ -42,4 +42,4 @@ But, you can also choose your favourite Piped instance or host your own and chan
 This plugin is neither affiliated with nor endorsed by TeamPiped.
 
 # License
-Piped Addon for Kodi is licensed under the AGPL v3 License. See [LICENSE](LICENSE) for details.
+Piped Addon for Kodi is licensed under the AGPL v3 License. See [LICENSE](LICENSE.txt) for details.
