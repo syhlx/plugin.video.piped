@@ -140,7 +140,7 @@ def list_playlists(playlists: list, nextpage: str='') -> None:
 		info: str = ''
 		if 'shortDescription' in playlist and playlist['shortDescription'] is not None: info += playlist['shortDescription'] + "\n\n"
 		elif 'description' in playlist and playlist['description'] is not None: info += playlist['description'] + "\n\n"
-		info += f"{addon.getLocalizedString(30018)}: {playlist['videos']}"
+		if 'videos' in playlist and playlist['videos'] is not None: info += f"{addon.getLocalizedString(30018)}: {playlist['videos']}"
 
 		if 'id' not in playlist:
 			playlist['id'] = get_component(playlist['url'])['params']['list']
