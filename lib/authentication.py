@@ -2,11 +2,11 @@ from xbmcaddon import Addon
 from xbmcgui import Dialog
 import requests
 
-def get_auth_token() -> str:
+def get_auth_token(force_reauth: bool=False) -> str:
 	addon = Addon()
 	if not addon.getSettingBool('use_login'): return ''
 
-	if len(addon.getSettingString('auth_token')) > 0:
+	if not force_reauth and len(addon.getSettingString('auth_token')) > 0:
 		return addon.getSettingString('auth_token')
 	else:
 		error_msg: str = ''
