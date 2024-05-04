@@ -1,5 +1,6 @@
 from xbmcaddon import Addon
 from xbmcgui import Dialog
+import requests
 
 def get_auth_token() -> str:
 	addon = Addon()
