@@ -25,3 +25,25 @@ def get_auth_token(force_reauth: bool=False) -> str:
 		except:
 			Dialog().ok(addon.getLocalizedString(30016), error_msg)
 			return ''
+
+def authenticated_request(path: str, append_token: bool=False) -> dict:
+	addon = Addon()
+	instance: str = addon.getSettingString('instance')
+	force_reauth: bool = False
+
+	result: dict = dict()
+
+	for _ in range(2):
+		auth_token: str = get_auth_token(force_reauth)
+
+		url: str = f'{instance}{path}'
+		if append_token: url = f'{url}{auth_token}'
+
+		result = requests.get(url, headers={'Authorization': auth_token}).json()
+
+		if 'error' in result: force_reauth = True
+		else: return result
+
+	Dialog().ok(addon.getLocalizedString(30016), str(result))
+
+	return result

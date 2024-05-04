@@ -8,34 +8,13 @@ from xbmcvfs import translatePath
 import xbmcgui
 import xbmcplugin
 
-from lib.authentication import get_auth_token
+from lib.authentication import authenticated_request
 from lib.history import set_watch_history, mark_as_watched, mark_as_unwatched
 from lib.utils import get_component, human_format
 
 addon = Addon()
 addon_handle: int = -1 # Will be properly set by router
 addon_url: str = f"plugin://{addon.getAddonInfo('id')}"
-
-def authenticated_get(path: str, append_token: bool=False) -> dict:
-	instance: str = addon.getSettingString('instance')
-	force_reauth: bool = False
-
-	result: dict = dict()
-
-	for _ in range(2):
-		auth_token: str = get_auth_token(force_reauth)
-
-		url: str = f'{instance}{path}'
-		if append_token: url = f'{url}{auth_token}'
-
-		result = get(url, headers={'Authorization': auth_token}).json()
-
-		if 'error' in result: force_reauth = True
-		else: return result
-
-	xbmcgui.Dialog().ok(addon.getLocalizedString(30016), str(result))
-
-	return result
 
 def home() -> None:
 	folders: list = list()
@@ -115,7 +94,7 @@ def list_videos(videos: list, hide_watched: bool=False, nextpage: str='') -> Non
 	xbmcplugin.endOfDirectory(addon_handle)
 
 def feed() -> None:
-	list_videos(authenticated_get('/feed?authToken=', True), addon.getSettingBool('watch_history_hide_watched_feed'))
+	list_videos(authenticated_request('/feed?authToken=', True), addon.getSettingBool('watch_history_hide_watched_feed'))
 
 def list_channels(channels: list, nextpage: str='') -> None:
 	for channel in channels:
@@ -146,7 +125,7 @@ def list_channels(channels: list, nextpage: str='') -> None:
 	xbmcplugin.endOfDirectory(addon_handle)
 
 def subscriptions() -> None:
-	list_channels(authenticated_get('/subscriptions'))
+	list_channels(authenticated_request('/subscriptions'))
 
 def list_playlists(playlists: list, nextpage: str='') -> None:
 	for playlist in playlists:
@@ -176,7 +155,7 @@ def list_playlists(playlists: list, nextpage: str='') -> None:
 	xbmcplugin.endOfDirectory(addon_handle)
 
 def playlists() -> None:
-	list_playlists(authenticated_get('/user/playlists'))
+	list_playlists(authenticated_request('/user/playlists'))
 
 def playlist(playlist_id: str, hide_watched=None) -> None:
 	instance: str = addon.getSettingString('instance')
