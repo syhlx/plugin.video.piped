@@ -37,7 +37,9 @@
 					<constraints>
 						<allowempty>true</allowempty>
 					</constraints>
-					<control type="edit" format="string" />
+					<control type="edit" format="string">
+						<hidden>true</hidden>
+					</control>
 					<dependencies>
 						<dependency type="visible" setting="use_login" operator="is">true</dependency>
 					</dependencies>
