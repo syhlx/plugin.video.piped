@@ -198,6 +198,13 @@
 					<control type="toggle" />
 				</setting>
 			</group>
+			<group id="description">
+				<setting id="show_description" label="30406" type="boolean">
+					<level>0</level>
+					<default>true</default>
+					<control type="toggle" />
+				</setting>
+			</group>
 			<group id="codecs">
 				<setting id="video_codec_priority" label="30405" type="string">
 					<level>3</level>

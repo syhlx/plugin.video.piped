@@ -62,19 +62,21 @@ def list_videos(videos: list, hide_watched: bool=False, nextpage: str='') -> Non
 		elif video['uploaded'] > 0: date: str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(video['uploaded'] / 1000))
 		else: date: str = ''
 		info: str = f"{video['title']}\n\n{video['uploaderName']}\n\n"
+		if addon.getSettingBool('show_description') and 'shortDescription' in video and video['shortDescription'] is not None: info += video['shortDescription'] + "\n\n"
 		if video['views'] >=0: info += f"{addon.getLocalizedString(30008)}: {human_format(video['views'])}\n"
 		if len(date) > 2: info += f"{addon.getLocalizedString(30009)}: {date}"
 		listitem = xbmcgui.ListItem(label=video['title'], path=plugin_url)
 		listitem.setProperty('isplayable', 'true')
 		listitem.setArt(dict(
 			thumb = video['thumbnail'],
-			fanart = video['uploaderAvatar']
+			fanart = video['thumbnail'].replace('hqdefault.jpg', 'maxresdefault.jpg')
 		))
 
 		tag = listitem.getVideoInfoTag()
 		tag.setTitle(video['title'])
 		tag.setPlot(info)
 		tag.setDuration(video['duration'])
+		if 'uploaded' in video and video['uploaded'] > 0: tag.setFirstAired(time.strftime('%Y-%m-%d', time.localtime(video['uploaded'] / 1000)))
 		tag.setFilenameAndPath(plugin_url)
 		tag.setPath(plugin_url)
 
@@ -139,7 +141,8 @@ def list_playlists(playlists: list, nextpage: str='') -> None:
 		
 		listitem = xbmcgui.ListItem(playlist['name'])
 		listitem.setArt(dict(
-			thumb = playlist['thumbnail']
+			thumb = playlist['thumbnail'],
+			fanart = playlist['thumbnail'].replace('hqdefault.jpg', 'maxresdefault.jpg')
 		))
 
 		tag = listitem.getVideoInfoTag()

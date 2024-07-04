@@ -185,3 +185,7 @@ msgstr ""
 msgctxt "#30405"
 msgid "Video codec priority"
 msgstr ""
+
+msgctxt "#30406"
+msgid "Show video description (when available)"
+msgstr ""
