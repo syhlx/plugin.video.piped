@@ -35,9 +35,40 @@ def home() -> None:
 	xbmcplugin.endOfDirectory(addon_handle)
 
 def watch(video_id: str) -> None:
+	resp = {}
+	try:
+		video_info = get(f'{addon.getSettingString("instance")}/streams/{video_id}')
+		resp = video_info.json()
+	except Exception as e:
+		raise e
+
+	if "error" in resp:
+		raise Exception('Can not play video!', resp["error"])
+
 	listitem = xbmcgui.ListItem(
-		path=f'http://localhost:{addon.getSettingInt("http_port")}/watch?v={video_id}',
+		label=resp['title'],
+		path=f'http://localhost:{addon.getSettingInt("http_port")}/watch?info={quote(video_info.content)}',
 	)
+
+	if 'uploadedDate' in resp and resp['uploadedDate'] is not None: date: str = resp['uploadedDate']
+	elif resp['uploaded'] > 0: date: str = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(resp['uploaded'] / 1000))
+	else: date: str = ''
+	info: str = f"{resp['title']}\n\n{resp['uploader']}\n\n"
+	if addon.getSettingBool('show_description') and 'description' in resp and resp['description'] is not None: info += resp['description'] + "\n\n"
+	if resp['views'] >=0: info += f"{addon.getLocalizedString(30008)}: {human_format(resp['views'])}\n"
+	if len(date) > 2: info += f"{addon.getLocalizedString(30009)}: {date}"
+
+	listitem.setArt(dict(
+		thumb = resp['thumbnailUrl'],
+		fanart = resp['thumbnailUrl'].replace('hqdefault.jpg', 'maxresdefault.jpg')
+	))
+
+	tag = listitem.getVideoInfoTag()
+	tag.setTitle(resp['title'])
+	tag.setPlot(info)
+	tag.setDuration(resp['duration'])
+	if 'uploaded' in resp and resp['uploaded'] > 0: tag.setFirstAired(time.strftime('%Y-%m-%d', time.localtime(resp['uploaded'] / 1000)))
+
 	listitem.setProperty('inputstream', 'inputstream.adaptive')
 	listitem.setProperty('inputstream.adaptive.manifest_type', 'mpd')
 	listitem.setProperty('piped_video_id', video_id)

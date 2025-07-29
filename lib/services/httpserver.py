@@ -8,7 +8,7 @@ from lib.dash import generate_dash
 
 class HttpRequestHandler(SimpleHTTPRequestHandler):
 	def gen_headers(self, content_length: int = 0):
-		if self.path.startswith('/watch?v='):
+		if self.path.startswith('/watch?info='):
 			self.send_response(200, 'OK')
 			if content_length > 0: self.send_header('Content-Length', str(content_length))
 			self.send_header('Content-Type', 'application/dash+xml; charset=utf-8')
@@ -16,9 +16,12 @@ class HttpRequestHandler(SimpleHTTPRequestHandler):
 			self.end_headers()
 		else:
 			self.send_error(404, "File not Found")
-		
+
 	def do_GET(self):
 		content = generate_dash(parse_qsl(self.path)[0][1]).encode('utf-8')
+		if not content:
+			self.send_error(404, "File not Found")
+			return
 		self.gen_headers(len(content))
 		self.wfile.write(content)
 

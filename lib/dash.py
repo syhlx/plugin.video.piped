@@ -1,3 +1,4 @@
+import json
 from requests import get
 import xbmc
 from xbmcaddon import Addon
@@ -10,9 +11,14 @@ class AutoIncrement():
 		self.i += 1
 		return self.i
 
-def generate_dash(video_id: str) -> str:
+def generate_dash(video_info: str) -> str:
 	addon = Addon()
-	resp = get(f'{addon.getSettingString("instance")}/streams/{video_id}').json()
+	resp = {}
+	try:
+		resp = json.loads(video_info)
+	except:
+		xbmc.log('Malformed JSON-encoded stream info', level=xbmc.LOGERROR)
+		return None
 
 	autoincrement = AutoIncrement()
 
