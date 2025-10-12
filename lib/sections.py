@@ -20,6 +20,8 @@ def home() -> None:
 	folders: list = list()
 	if addon.getSettingBool('use_login'):
 		folders.append(('feed', addon.getLocalizedString(30001)))
+		if addon.getSettingBool('show_feed_update'):
+			folders.append(('updatefeed', addon.getLocalizedString(30020)))
 		folders.append(('subscriptions', addon.getLocalizedString(30002)))
 		folders.append(('playlists',addon.getLocalizedString(30003)))
 		if addon.getSettingBool('watch_history_enable') and len(addon.getSettingString('watch_history_playlist')) > 0:
@@ -97,6 +99,22 @@ def list_videos(videos: list, hide_watched: bool=False, nextpage: str='') -> Non
 
 def feed() -> None:
 	list_videos(authenticated_request('/feed?authToken=', True), addon.getSettingBool('watch_history_hide_watched_feed'))
+
+def updatefeed() -> None:
+	instance: str = addon.getSettingString('instance')
+
+	channels: list = authenticated_request('/subscriptions')
+	channelcount: int = len(channels)
+
+	progressbar = xbmcgui.DialogProgress()
+	progressbar.create(addon.getLocalizedString(30021))
+
+	for i in range(channelcount):
+		channel = channels[i]
+		progressbar.update(int((i + 1) / channelcount * 100), f"{i + 1}/{channelcount} | {channel['name']}")
+		authenticated_request(channel['url'])
+
+	feed()
 
 def list_channels(channels: list, nextpage: str='') -> None:
 	for channel in channels:
@@ -238,6 +256,7 @@ def router(argv: list) -> None:
 	routes: dict = {
 		'home': {},
 		'feed': {},
+		'updatefeed': {},
 		'settings': {},
 		'subscriptions': {},
 		'playlists': {},

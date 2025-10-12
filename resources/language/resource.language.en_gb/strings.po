@@ -94,6 +94,14 @@ msgctxt "#30019"
 msgid "Channels"
 msgstr ""
 
+msgctxt "#30020"
+msgid "Update Feed"
+msgstr ""
+
+msgctxt "#30021"
+msgid "Fetching channel videos"
+msgstr ""
+
 msgctxt "#30100"
 msgid "Instance"
 msgstr ""
@@ -188,4 +196,12 @@ msgstr ""
 
 msgctxt "#30406"
 msgid "Show video description (when available)"
+msgstr ""
+
+msgctxt "#30500"
+msgid "Interface"
+msgstr ""
+
+msgctxt "#30501"
+msgid "Show feed update button"
 msgstr ""

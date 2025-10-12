@@ -141,6 +141,15 @@
 				</setting>
 			</group>
 		</category>
+		<category id="interface" label="30500">
+			<group id="interface_menu">
+				<setting id="show_feed_update" label="30501" type="boolean">
+					<level>3</level>
+					<default>false</default>
+					<control type="toggle" />
+				</setting>
+			</group>
+		</category>
 		<category id="service" label="30300">
 			<group id="service_port">
 				<setting id="http_port_random" label="30301" type="boolean">
