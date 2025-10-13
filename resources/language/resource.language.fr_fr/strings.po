@@ -32,15 +32,15 @@ msgstr "Listes de lecture"
 
 msgctxt "#30004"
 msgid "Watch History"
-msgstr "Historique"
+msgstr "Historique de visionnage"
 
 msgctxt "#30005"
 msgid "Trending"
-msgstr "Tendance"
+msgstr "Tendances"
 
 msgctxt "#30006"
 msgid "Search"
-msgstr "Chercher"
+msgstr "Rechercher"
 
 msgctxt "#30007"
 msgid "Settings"
@@ -52,7 +52,7 @@ msgstr "Vues"
 
 msgctxt "#30009"
 msgid "Published"
-msgstr "Publié"
+msgstr "Publiée"
 
 msgctxt "#30010"
 msgid "Go to channel"
@@ -60,15 +60,15 @@ msgstr "Aller à la chaîne"
 
 msgctxt "#30011"
 msgid "Remove from watch history"
-msgstr "Supprimer de l'historique"
+msgstr "Supprimer de l'historique de visionnage"
 
 msgctxt "#30012"
 msgid "Add to watch history"
-msgstr "Ajouter à l'historique du visionnage"
+msgstr "Ajouter à l'historique de visionnage"
 
 msgctxt "#30013"
 msgid "Set as watch history"
-msgstr "Marquer comme vu"
+msgstr "Marquer comme vue"
 
 msgctxt "#30014"
 msgid "Playlist"
@@ -128,7 +128,7 @@ msgstr "ID de la liste de lecture"
 
 msgctxt "#30203"
 msgid "Hide watched videos in Feed"
-msgstr "Masquer les vidéos regardées dans le fil d'actualité"
+msgstr "Masquer les vidéos regardées dans le flux"
 
 msgctxt "#30204"
 msgid "Hide watched videos in Channels"
