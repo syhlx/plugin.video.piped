@@ -94,6 +94,14 @@ msgctxt "#30019"
 msgid "Channels"
 msgstr "Chaînes"
 
+msgctxt "#30020"
+msgid "Update Feed"
+msgstr "Mettre à jour le flux"
+
+msgctxt "#30021"
+msgid "Fetching channel videos"
+msgstr "Récupération des vidéos des chaînes"
+
 msgctxt "#30100"
 msgid "Instance"
 msgstr "Instance"
@@ -189,3 +197,11 @@ msgstr "Priorité du codec vidéo"
 msgctxt "#30406"
 msgid "Show video description (when available)"
 msgstr "Afficher la description de la vidéo (si disponible)"
+
+msgctxt "#30500"
+msgid "Interface"
+msgstr "Interface"
+
+msgctxt "#30501"
+msgid "Show feed update button"
+msgstr "Afficher le bouton de mise à jour du flux"
