@@ -141,6 +141,41 @@
 				</setting>
 			</group>
 		</category>
+		<category id="blacklist" label="30600">
+			<group id="blacklist_channels">
+				<setting id="blacklist_channels_enable" label="30601" type="boolean">
+					<level>1</level>
+					<default>false</default>
+					<control type="toggle" />
+				</setting>
+			</group>
+			<group id="blacklist_titles">
+				<setting id="blacklist_titles_enable" label="30602" type="boolean">
+					<level>3</level>
+					<default>false</default>
+					<control type="toggle" />
+				</setting>
+				<setting id="blacklist_titles_regex" label="30603" type="string" parent="blacklist_titles_enable">
+					<level>3</level>
+					<default />
+					<constraints>
+						<allowempty>true</allowempty>
+					</constraints>
+					<control type="edit" format="string" />
+					<dependencies>
+						<dependency type="visible" setting="blacklist_titles_enable" operator="is">true</dependency>
+					</dependencies>
+				</setting>
+				<setting id="blacklist_titles_case_insensitive" label="30604" type="boolean" parent="blacklist_titles_enable">
+					<level>3</level>
+					<default>true</default>
+					<control type="toggle" />
+					<dependencies>
+						<dependency type="visible" setting="blacklist_titles_enable" operator="is">true</dependency>
+					</dependencies>
+				</setting>
+			</group>
+		</category>
 		<category id="interface" label="30500">
 			<group id="interface_menu">
 				<setting id="show_feed_update" label="30501" type="boolean">
