@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Piped\n"
 "POT-Creation-Date: 2025-05-12 19:18+CET\n"
-"PO-Revision-Date: 2025-11-17 07:22+UTC\n"
+"PO-Revision-Date: 2025-11-17 08:50+UTC\n"
 "Last-Translator: Syhlx\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -215,8 +215,44 @@ msgid "Interface"
 msgstr "Interface"
 
 msgctxt "#30501"
-msgid "Show feed update button"
+msgid "Main Menu"
+msgstr "Menu Principal"
+
+msgctxt "#30502"
+msgid "Show Feed"
+msgstr "Afficher le flux"
+
+msgctxt "#30503"
+msgid "Show Update Feed"
 msgstr "Afficher le bouton de mise à jour du flux"
+
+msgctxt "#30504"
+msgid "Show Subscriptions"
+msgstr "Afficher les abonnements"
+
+msgctxt "#30505"
+msgid "Show Playlists"
+msgstr "Afficher les listes de lecture"
+
+msgctxt "#30506"
+msgid "Show Watch History"
+msgstr "Afficher l'historique de visionnage"
+
+msgctxt "#30507"
+msgid "Show Trending"
+msgstr "Afficher les tendances"
+
+msgctxt "#30508"
+msgid "Show Blacklist"
+msgstr "Afficher la liste noire"
+
+msgctxt "#30509"
+msgid "Show Search"
+msgstr "Afficher la recherche"
+
+msgctxt "#30510"
+msgid "Show Settings"
+msgstr "Afficher les paramètres"
 
 msgctxt "#30600"
 msgid "Blacklist"

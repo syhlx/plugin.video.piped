@@ -20,19 +20,25 @@ addon_url: str = f"plugin://{addon.getAddonInfo('id')}"
 def home() -> None:
 	folders: list = list()
 	if addon.getSettingBool('use_login'):
-		folders.append(('feed', addon.getLocalizedString(30001)))
-		if addon.getSettingBool('show_feed_update'):
+		if addon.getSettingBool('menu_show_feed'):
+			folders.append(('feed', addon.getLocalizedString(30001)))
+		if addon.getSettingBool('menu_show_feed_update'):
 			folders.append(('updatefeed', addon.getLocalizedString(30020)))
-		folders.append(('subscriptions', addon.getLocalizedString(30002)))
-		folders.append(('playlists',addon.getLocalizedString(30003)))
-		if addon.getSettingBool('watch_history_enable') and len(addon.getSettingString('watch_history_playlist')) > 0:
+		if addon.getSettingBool('menu_show_subscriptions'):
+			folders.append(('subscriptions', addon.getLocalizedString(30002)))
+		if addon.getSettingBool('menu_show_playlists'):
+			folders.append(('playlists',addon.getLocalizedString(30003)))
+		if addon.getSettingBool('menu_show_watch_history') and addon.getSettingBool('watch_history_enable') and len(addon.getSettingString('watch_history_playlist')) > 0:
 			folders.append(('watch_history', addon.getLocalizedString(30004)))
 	
-	folders.append(('trending', addon.getLocalizedString(30005)))
-	if addon.getSettingBool('blacklist_channels_enable'):
+	if addon.getSettingBool('menu_show_watch_trending'):
+		folders.append(('trending', addon.getLocalizedString(30005)))
+	if addon.getSettingBool('menu_show_watch_blacklist') and addon.getSettingBool('blacklist_channels_enable'):
 			folders.append(('blacklist_section', addon.getLocalizedString(30600)))
-	folders.append(('search_select', addon.getLocalizedString(30006)))
-	folders.append(('settings', addon.getLocalizedString(30007)))
+	if addon.getSettingBool('menu_show_watch_search'):
+		folders.append(('search_select', addon.getLocalizedString(30006)))
+	if addon.getSettingBool('menu_show_watch_settings'):
+		folders.append(('settings', addon.getLocalizedString(30007)))
 
 	for folder in folders:
 		xbmcplugin.addDirectoryItem(handle=addon_handle, url=f"{addon_url}/{folder[0]}", listitem=xbmcgui.ListItem(folder[1]), isFolder=True)
