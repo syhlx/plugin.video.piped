@@ -30,7 +30,7 @@ def home() -> None:
 			folders.append(('playlists',addon.getLocalizedString(30003)))
 		if addon.getSettingBool('menu_show_watch_history') and addon.getSettingBool('watch_history_enable') and len(addon.getSettingString('watch_history_playlist')) > 0:
 			folders.append(('watch_history', addon.getLocalizedString(30004)))
-	
+
 	if addon.getSettingBool('menu_show_watch_trending'):
 		folders.append(('trending', addon.getLocalizedString(30005)))
 	if addon.getSettingBool('menu_show_watch_blacklist') and addon.getSettingBool('blacklist_channels_enable'):
@@ -50,7 +50,6 @@ def watch(video_id: str) -> None:
 		path=f'http://localhost:{addon.getSettingInt("http_port")}/watch?v={video_id}',
 	)
 	listitem.setProperty('inputstream', 'inputstream.adaptive')
-	listitem.setProperty('inputstream.adaptive.manifest_type', 'mpd')
 	listitem.setProperty('piped_video_id', video_id)
 
 	xbmcplugin.setResolvedUrl(handle=addon_handle, succeeded=True, listitem=listitem)
@@ -60,7 +59,7 @@ def list_videos(videos: list, hide_watched: bool=False, nextpage: str='') -> Non
 	watch_history_enabled: bool = addon.getSettingBool('watch_history_enable') and len(addon.getSettingString('watch_history_playlist')) > 0
 	if watch_history_enabled:
 		try:
-			with open(f'{translatePath(addon.getAddonInfo("profile"))}/watch_history.json', 'r') as f:                                                    
+			with open(f'{translatePath(addon.getAddonInfo("profile"))}/watch_history.json', 'r') as f:
 				history = json.load(f)
 		except:
 			pass
@@ -191,7 +190,7 @@ def list_playlists(playlists: list, nextpage: str='') -> None:
 
 		if 'id' not in playlist:
 			playlist['id'] = get_component(playlist['url'])['params']['list']
-		
+
 		listitem = xbmcgui.ListItem(playlist['name'])
 		listitem.setArt(dict(
 			thumb = playlist['thumbnail'],
