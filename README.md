@@ -14,6 +14,7 @@ An addon which allows you to access any Piped instance, login and manage your pl
 - [x] Subtitles
 - [x] Pick favourite your Piped instance
 - [x] Compatible with Sponsor Block
+- [x] Blacklist channels and video titles
 - [x] Watch live streams
 
 **Account Features (logged in to a Piped instance)**
